@@ -29,32 +29,42 @@
 `npm i escpos@2.4.11` 
 
 ### code implementation on `main.ts`
-`
-ipcMain.on('ipc-escpos', async () => {
-  console.log('IPC ESCPOS STARTING');
-  // --------------------
-  try {
-        const escpos = require('escpos');
-        const device = new escpos.USB();
-        const printer = new escpos.Printer(device);
-        device.open(() => {
-          printer.align('lt').text('test');
+```
+     ipcMain.on('ipc-escpos', async () => {
+       console.log('IPC ESCPOS STARTING');
+       // --------------------
+       try {
+             const escpos = require('escpos');
+             const device = new escpos.USB();
+             const printer = new escpos.Printer(device);
+             device.open(() => {
+               printer.align('lt').text('test');
 
-          printer.cut();
-          printer.cashdraw(2);
-          printer.close();
-          printer.flush();
+               printer.cut();
+               printer.cashdraw(2);
+               printer.close();
+               printer.flush();
 
-        });
-     }
-     catch (error) {    
-      console.log(error);
-    }
-});
-`
+             });
+          }
+          catch (error) {    
+           console.log(error);
+         }
+     });
+```
+
+### code implatementation on render class
+calling ipc-escpos name, for executing the printing function
+```
+export const PrinterEscPosSmallService = {
+  doPrint() {
+    window.electron.ipcRenderer.sendMessage('ipc-escpos');    
+  },
+};
+```
 
 ### log error when using librarry ESCPOS ^2.4.11
-`
+```
 IPC ESCPOS STARTING
 TypeError: usb.on is not a function
     at new USB (C:\Users\Deni Setiawan\Data\github\denitiawan\research-electron-react-boilerplate-printthermal\node_modules\escpos\adapter\usb.js:52:7)
@@ -64,5 +74,5 @@ TypeError: usb.on is not a function
     at EventEmitter.<anonymous> (node:electron/js2c/browser_init:2:80713)
     at EventEmitter.emit (node:events:513:28)
     at EventEmitter.emit (node:domain:489:12)
-`
+```
 USB is not found on escpos variable
