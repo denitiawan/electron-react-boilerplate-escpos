@@ -6,8 +6,11 @@
 install POS58Setup.exe app for automatically searching driver for printer thermal
 - install POS58Setup.exe
 - following instruction until finish
-![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/53372af3-c125-4651-8d27-9fa16b1136ba?raw=true)
-![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/be13bdcc-ea87-443c-8372-5e31ac5bebd1?raw=true)
+
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/af18e2b5-5f87-4881-9ea4-4a5c081698e5)
+
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/670e5aa4-0f3c-4b7e-8c29-ac672f9cf823)
+
 
 ### install zadig.exe
 install zadig.exe for replace existing driver to new driver
@@ -15,7 +18,8 @@ install zadig.exe for replace existing driver to new driver
 - open tab `options` > `list all device`
 - choose `CX58D` or what printer name will showing on your zadig
 - klik reinstall driver
-![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/2711f9f6-b1eb-4ab5-bde4-cf11776786ae?raw=true)
+
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/aee9f92e-c7f4-4948-9b13-686085801fff)
 
 
 ### install recta-host
@@ -25,10 +29,11 @@ install recta-host-win32-ia32-1.0.0-setup.exe for connect and testing printer us
 - klik `save`
 - klik `start`
 - klik `test print`
+
+
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/d810a277-a33b-4b2f-8175-b704e58b0e7c)
+
 printer will print the paper by recta host and will write text like `RECTA PRINT`
-
-![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/b3bd908c-e1f8-4e70-8bcf-e0ff67996c28?raw=true)
-
 
 
 
