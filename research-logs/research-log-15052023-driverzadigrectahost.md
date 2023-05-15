@@ -25,9 +25,9 @@ install recta-host-win32-ia32-1.0.0-setup.exe for connect and testing printer us
 - klik `save`
 - klik `start`
 - klik `test print`
-![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/b3bd908c-e1f8-4e70-8bcf-e0ff67996c28?raw=true)
-
 printer will print the paper by recta host and will write text like `RECTA PRINT`
+
+![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/b3bd908c-e1f8-4e70-8bcf-e0ff67996c28?raw=true)
 
 
 
