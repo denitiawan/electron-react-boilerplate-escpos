@@ -35,16 +35,20 @@ ipcMain.on('ipc-escpos', async () => {
     
     const escpos = require('escpos');  
     escpos.USB = require('escpos-usb');
-    const device  = new escpos.USB();
-    const options = { encoding: "GB18030" /* default */ }    
-    const printer = new escpos.Printer({ device, options });
-      device.open(() => {
-          printer.align('lt').text('test');
-          printer.cut();
-          printer.cashdraw(2);
-          printer.close();
-          printer.flush();
-      });
+    //console.log(escpos.USB.findPrinter());
+    const device = new escpos.USB(0x01, 0xff);
+    const printer = new escpos.Printer(device);
+    device.open(() => {
+      printer.align('lt').text('test');
+
+      printer.cut();
+      printer.cashdraw(2);
+      printer.close();
+      printer.flush();
+
+    });    
+    
+    
      }
      catch (error) {    
       console.log(error);
