@@ -1,4 +1,4 @@
-# electron-react-boilerplate-printthermal
+# Research printing on electron-react-boilerplate
 Research how to electron-react-boilerplate do printing invoice to thermal printer
 - adapter `USB` 
 - printer  `thermal printer ESCPOS command support`
