@@ -63,7 +63,7 @@ export const PrinterEscPosSmallService = {
 };
 ```
 
-### log error when using librarry ESCPOS ^2.4.11
+### log error when executing the printing function (ESCPOS 2.4.11)
 ```
 IPC ESCPOS STARTING
 TypeError: usb.on is not a function
