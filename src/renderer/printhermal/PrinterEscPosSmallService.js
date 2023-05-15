@@ -1,7 +1,7 @@
 
 
 export const PrinterEscPosSmallService = {
-  doPrint() {
+  doPrint() {    
     window.electron.ipcRenderer.sendMessage('ipc-escpos');    
   },
 };

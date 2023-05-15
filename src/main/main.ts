@@ -7,6 +7,8 @@ import path from 'path';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
+
+
 /**
  * This module executes inside of electron's main process. You can start
  * electron renderer process from here and communicate with the other processes
@@ -27,21 +29,22 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-escpos', async () => {
-  console.log('IPC ESCPOS STARTING');
+  console.log('IPC ESCPOS STARTING --------');
   // --------------------
-  try {
-        const escpos = require('escpos');
-        const device = new escpos.USB();
-        const printer = new escpos.Printer(device);
-        device.open(() => {
+  try {               
+    
+    const escpos = require('escpos');  
+    escpos.USB = require('escpos-usb');
+    const device  = new escpos.USB();
+    const options = { encoding: "GB18030" /* default */ }    
+    const printer = new escpos.Printer({ device, options });
+      device.open(() => {
           printer.align('lt').text('test');
-
           printer.cut();
           printer.cashdraw(2);
           printer.close();
           printer.flush();
-
-        });
+      });
      }
      catch (error) {    
       console.log(error);
