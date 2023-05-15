@@ -5,7 +5,7 @@
 ### install POS58Setup.exe
 install POS58Setup.exe app for automatically searching driver for printer thermal
 - install POS58Setup.exe
-- following instruction after finish
+- following instruction until finish
 
 ### install zadig.exe
 install zadig.exe for replace existing driver to new driver
