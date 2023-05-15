@@ -25,7 +25,7 @@
 # 15-mei-2023
 ## librarry NODE-ESCPOS  2.4.11
 
-### install escpos 2.4.11
+### npm install 
 ```
 npm i escpos@2.4.11
 npm i escpos-usb
@@ -99,6 +99,8 @@ Error: Can not find printer
 [20808:0515/163518.053:ERROR:gpu_init.cc(523)] Passthrough is not supported, GL is disabled, ANGLE is 
 
 ```
-USB is not found on escpos variable
+- USB is not found on escpos variable
+- Cannot find module 'serialport'
+- Can not find printer
 
 
