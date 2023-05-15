@@ -1,5 +1,8 @@
 # electron-react-boilerplate-printthermal
-how to print invoice to thermal printing on electron-react-boiler plate project
+Research how to electron-react-boilerplate do printing invoice to thermal printer
+- adapter `USB` 
+- printer  `thermal printer ESCPOS command support`
+- paper size `58mm` `80mm`
 
 [Research Logs in here](https://github.com/denitiawan/electron-react-boilerplate-printthermal/blob/main/log-version.md)
 
