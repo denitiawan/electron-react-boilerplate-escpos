@@ -6,11 +6,11 @@ import PrinterComponent from './printhermal/PrinterComponent';
 
 function Hello() {
   return (
-     <div>
-      <div className="Hello">
-        <PrinterComponent />
-      </div>
+    <div>
+    <div className="Hello">
+      <PrinterComponent />
     </div>
+  </div>
   );
 }
 

@@ -1,4 +1,11 @@
 /* eslint global-require: off, no-console: off, promise/always-return: off */
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
+import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
+import path from 'path';
+
+import MenuBuilder from './menu';
+import { resolveHtmlPath } from './util';
 
 /**
  * This module executes inside of electron's main process. You can start
@@ -8,14 +15,6 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import log from 'electron-log';
-import MenuBuilder from './menu';
-import { resolveHtmlPath } from './util';
-
-const escpos = require('escpos');
 
 class AppUpdater {
   constructor() {
@@ -27,20 +26,27 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
-
-ipcMain.on('ipc-escpos', async () => {  
-  console.log("ipc-escpos response from main.ts 0000000");
+ipcMain.on('ipc-escpos', async () => {
+  console.log('IPC ESCPOS STARTING');
   // --------------------
+  try {
+        const escpos = require('escpos');
+        const device = new escpos.USB();
+        const printer = new escpos.Printer(device);
+        device.open(() => {
+          printer.align('lt').text('test');
 
-  // install escpos-usb adapter module manually
-  //escpos.USB = require('escpos-usb');
+          printer.cut();
+          printer.cashdraw(2);
+          printer.close();
+          printer.flush();
 
-
-  // coba pakai escpos versi yang sama dengan nexpos di tahun 2019
-  // npm i escpos@2.4.11
-  // implementasikan
-  
-})
+        });
+     }
+     catch (error) {    
+      console.log(error);
+    }
+});
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;

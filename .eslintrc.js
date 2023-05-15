@@ -22,8 +22,6 @@ module.exports = {
       node: {},
       webpack: {
         config: require.resolve('./.erb/configs/webpack.config.eslint.ts'),
-        stream: require.resolve('stream-browserify'),
-        zlib: require.resolve('browserify-zlib'),  
       },
       typescript: {},
     },
