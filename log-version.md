@@ -22,5 +22,47 @@
 - electron-react-boilerplate latest (mei 2023) https://github.com/electron-react-boilerplate/electron-react-boilerplate
 
 
-# 13-mei-2023
+# 15-mei-2023
 ## librarry NODE-ESCPOS  2.4.11
+
+### install escpos 2.4.11
+`npm i escpos@2.4.11` 
+
+### code implementation on `main.ts`
+`
+ipcMain.on('ipc-escpos', async () => {
+  console.log('IPC ESCPOS STARTING');
+  // --------------------
+  try {
+        const escpos = require('escpos');
+        const device = new escpos.USB();
+        const printer = new escpos.Printer(device);
+        device.open(() => {
+          printer.align('lt').text('test');
+
+          printer.cut();
+          printer.cashdraw(2);
+          printer.close();
+          printer.flush();
+
+        });
+     }
+     catch (error) {    
+      console.log(error);
+    }
+});
+`
+
+### log error when using librarry ESCPOS ^2.4.11
+`
+IPC ESCPOS STARTING
+TypeError: usb.on is not a function
+    at new USB (C:\Users\Deni Setiawan\Data\github\denitiawan\research-electron-react-boilerplate-printthermal\node_modules\escpos\adapter\usb.js:52:7)
+    at IpcMainImpl.<anonymous> (C:\Users\Deni Setiawan\Data\github\denitiawan\research-electron-react-boilerplate-printthermal\src\main\main.ts:36:24)
+    at IpcMainImpl.emit (node:events:513:28)
+    at IpcMainImpl.emit (node:domain:489:12)
+    at EventEmitter.<anonymous> (node:electron/js2c/browser_init:2:80713)
+    at EventEmitter.emit (node:events:513:28)
+    at EventEmitter.emit (node:domain:489:12)
+`
+USB is not found on escpos variable
