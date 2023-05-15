@@ -1,4 +1,4 @@
-[Back to Home](https://github.com/denitiawan/electron-react-boilerplate-printthermal)
+[Back to Home](https://github.com/denitiawan/electron-react-boilerplate-printthermal/blob/main/README.md)
 
 # 12-mei-2023
 ##  librarry NODE-ESCPOS  3.0.0-alpha.6
