@@ -4,7 +4,7 @@ Research how to electron-react-boilerplate do printing invoice to thermal printe
 - printer  `thermal printer ESCPOS command support`
 - paper size `58mm` `80mm`
 
-[Research Logs in here](https://github.com/denitiawan/electron-react-boilerplate-printthermal/blob/main/log-version.md)
+[Research Logs in here](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
 ## spec project electron :
 - node.js versi 16.4.2
