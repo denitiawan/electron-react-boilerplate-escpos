@@ -32,27 +32,29 @@ ipcMain.on('ipc-escpos', async () => {
   console.log('IPC ESCPOS STARTING --------');
   // --------------------
   try {               
-    
-    const escpos = require('escpos');  
-    escpos.USB = require('escpos-usb');
-    
-    // print printer detect
-    console.log(escpos.USB.findPrinter());
 
-    
-    // const device = new escpos.USB(0x01, 0xff);
-    // const printer = new escpos.Printer(device);
-    // device.open(() => {
-    //   printer.align('lt').text('test');
+    const escpos = require('escpos');   // import lib escpos    
+    escpos.USB = require('escpos-usb'); // create usb adapter    
+    let listPrinter = escpos.USB.findPrinter() // console log printer spesification
+    console.log(listPrinter);
 
-    //   printer.cut();
-    //   printer.cashdraw(2);
-    //   printer.close();
-    //   printer.flush();
+    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct Printer
+    const printer = new escpos.Printer(device); // printer
+    device.open(() => {
+        printer.align('lt').text('');
+        printer.align('lt').text('16-05-2023 15:13');        
+        printer.align('lt').text('Test Printing From React');
+        printer.align('lt').text('By Deni Setiawan');
+        printer.align('lt').text('NexSOFT');
+        printer.align('lt').text('');
+  
+        printer.cut(); // cutting papper function
+        printer.cashdraw(2); // open cashdrawer function
+        printer.close(); // close printer
+        printer.flush(); // flush printer
+  
+      });   
 
-    // });    
-    
-    
      }
      catch (error) {    
       console.log(error);
