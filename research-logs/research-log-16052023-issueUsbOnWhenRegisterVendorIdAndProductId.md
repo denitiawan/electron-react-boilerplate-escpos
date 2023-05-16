@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 16-mei-2023 - Issue usb.on after find printer
+# 16-mei-2023 - Issue usb.on when register vendorID and productID
 
 ### Librarry
 ```
