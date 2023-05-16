@@ -35,18 +35,22 @@ ipcMain.on('ipc-escpos', async () => {
     
     const escpos = require('escpos');  
     escpos.USB = require('escpos-usb');
-    //console.log(escpos.USB.findPrinter());
-    const device = new escpos.USB(0x01, 0xff);
-    const printer = new escpos.Printer(device);
-    device.open(() => {
-      printer.align('lt').text('test');
+    
+    // print printer detect
+    console.log(escpos.USB.findPrinter());
 
-      printer.cut();
-      printer.cashdraw(2);
-      printer.close();
-      printer.flush();
+    
+    // const device = new escpos.USB(0x01, 0xff);
+    // const printer = new escpos.Printer(device);
+    // device.open(() => {
+    //   printer.align('lt').text('test');
 
-    });    
+    //   printer.cut();
+    //   printer.cashdraw(2);
+    //   printer.close();
+    //   printer.flush();
+
+    // });    
     
     
      }
