@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 15-mei-2023 - Print Printer Spesification
+# 15-mei-2023 - Console log Printer Spesification
 
 ### Librarry
 ```
@@ -20,7 +20,7 @@ escpos.USB = require('escpos-usb');
 // console log printer spesification
 console.log(escpos.USB.findPrinter());
 ```
-### Console log
+### Console log (Printer VSC TM 801)
 ```
 [
   {
@@ -58,7 +58,7 @@ escpos.USB = require('escpos-usb');
 // console log printer spesification
 console.log(escpos.USB.findPrinter());
 ```
-### Console log
+### Console log (Printer C58BT)
 ```
 [
   {
