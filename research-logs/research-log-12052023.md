@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 12-mei-2023 - Belum Berhasil
+# 12-mei-2023 - Trial & Error NODE-ESCPOS 3.0.0-alpha.6
 ##  librarry NODE-ESCPOS  3.0.0-alpha.6
 - name : NODE-ESCPOS 
 - versi terakhir : 3.0.0-alpha.6
