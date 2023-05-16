@@ -109,7 +109,7 @@ IPC ESCPOS STARTING --------
 ### Issues
 - Issue printer cannot printout 2 times
 ```
-i'am must unplug and pluged the printer, and then I hit again print function from react,  and printer can work again!
+I must unplug and pluged the printer, and then I hit again printing function from react,  and printer can work again!
 ```
 
 
