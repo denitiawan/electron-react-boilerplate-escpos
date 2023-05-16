@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 15-mei-2023 | Install (POS58Setup, zadig,  Recta Host)
+# 16-mei-2023 | Install (POS58Setup, zadig,  Recta Host)
 
 ### install POS58Setup.exe https://storage.karinov.co.id/pc/POS58Setup.exe
 install POS58Setup.exe app for automatically searching driver for printer thermal
