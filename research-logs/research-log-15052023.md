@@ -7,7 +7,6 @@
 ```
 npm i escpos@2.4.11
 npm i escpos-usb
-npm install serialport
 ```
 
 ### code implementation on `main.ts`
