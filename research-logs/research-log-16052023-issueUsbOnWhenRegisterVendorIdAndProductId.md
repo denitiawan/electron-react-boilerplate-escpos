@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 16-mei-2023 - Issue usb.on when register vendorID and productID
+# 16-mei-2023 - Issue usb.on when register idVendor and idProduct Printer
 
 ### Librarry
 ```
@@ -21,7 +21,7 @@ npm i escpos-usb
     console.log(listPrinter);
 
     //https://github.com/song940/node-escpos/blob/v3/packages/usb/README.md
-    // register vendorId & productId
+    // register idVendor & idProduct printer
     const device = new escpos.USB(4070, 33054);
 ```
 ### logs
@@ -63,7 +63,7 @@ TypeError: usb.on is not a function
 - success for import lib escpos
 - success for creating USB adapter
 - success for console.log list of printer (connected to windows OS)
-- failed for register printer to `escpos` librarry 
+- failed for register idVendor & idProduct printer to `escpos` librarry 
 ```
 ....
 TypeError: usb.on is not a function
