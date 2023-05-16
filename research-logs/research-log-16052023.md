@@ -6,7 +6,6 @@
 ```
 npm i escpos@2.4.11
 npm i escpos-usb
-npm install serialport
 ```
 
 ## 1. Printer VSC TM 801 (nexSOFT)
