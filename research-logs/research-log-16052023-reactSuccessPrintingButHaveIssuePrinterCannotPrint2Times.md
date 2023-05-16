@@ -106,6 +106,9 @@ IPC ESCPOS STARTING --------
 - success for register idVendor & idProduct printer to `escpos` librarry 
 - success for printout 
 
+![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/28fd4512-3827-4b37-b428-2d6fb2136fe5)
+
+
 ### Issues
 - Issue printer cannot printout 2 times
 ```
