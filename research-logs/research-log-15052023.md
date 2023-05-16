@@ -1,6 +1,6 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 15-mei-2023 - Belum Berhasil
+# 15-mei-2023 - Trial & error NODE-ESCPOS  2.4.11
 ## librarry NODE-ESCPOS  2.4.11
 
 ### npm install 
