@@ -93,9 +93,12 @@ ipcMain.on('ipc-escpos', async () => {
           printer.cut(); 
           printer.close(); 
         });
-    
+        
+        // print action
+        printer.cut(); 
+        printer.cashdraw(2); 
+        printer.close();     
       });            
-
      }
      catch (error) {    
       console.log(error);
@@ -236,6 +239,17 @@ console.log(escpos.USB.findPrinter());
 After testing printout barcode on VSC TM-801(nexSOFT) Printer, this printer only support for barcodeType :
 - Support     : CODE39
 - Not Support : ITF, EAN8, UPC-E
+```
+
+### QRCode example code
+impelement QrCode command, must end of code, because qrcode command, have implement .cut and .close
+```
+....
+....
+printer.align("ct").qrimage('https://www.google.com', function (err) {                          
+  printer.cut(); 
+  printer.close();
+});
 ```
 
 
