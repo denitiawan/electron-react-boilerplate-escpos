@@ -19,7 +19,7 @@ version     : v4.6.0 (Latest)
 
 ### Librarries
 ```
-npm i escpos@3.0.0-alpha.4
+npm i escpos@3.0.0-alpha.6
 npm i escpos-usb@3.0.0-alpha.4
 npm i usb@1.9.2
 ```
