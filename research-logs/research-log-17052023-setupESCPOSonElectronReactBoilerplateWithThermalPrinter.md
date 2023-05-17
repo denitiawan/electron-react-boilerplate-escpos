@@ -40,11 +40,11 @@ npm i usb@1.9.2
 ```
 
 #  Code implementation on `main.ts`
-- Print Text
-- Print Barcode (CODE39)
-- Cut Papper
-- Open Cashdrawer
-- Print QRCode
+- Print Text `printer.align('ct').text('By Deni Setiawan');`
+- Print Barcode (CODE39) `printer.align('ct').barcode('CODE39', 'CODE39'); `
+- Cut Papper `printer.cut();`
+- Open Cashdrawer `printer.cashdraw(2);`
+- Print QRCode `printer.align("ct").qrimage(qrUrl, function (err) { ...`
 
 ```
 ipcMain.on('ipc-escpos', async () => {
