@@ -1,15 +1,184 @@
 [Back to Research Logs](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/blob/main/research-logs.md)
 
-# 16-mei-2023 - React success printing but have issue the printer cannot print 2 times
+|Date|Assign|
+|--|--|
+|17-mei-2023|[Deni Setiawan](https://github.com/denitiawan)|
+# Setup EscPos on Electron React Boilerplate with Thermal Printer
 
-### Librarry
+
+### Requirements
 ```
-npm i escpos@3.0.0-alpha.4
+-- Node ----------------
+node version : v16.14.2 
+npm version  : 8.5.0
+
+-- Electron ------------
+Repository  : https://github.com/electron-react-boilerplate/electron-react-boilerplate
+version     : v4.6.0 (Latest)
+```
+
+### Librarries
+```
+npm i escpos@3.0.0-alpha.6
 npm i escpos-usb@3.0.0-alpha.4
 npm i usb@1.9.2
 ```
 
-## Solving issue : usb.on
+### package.json
+```
+  .....
+  .....
+  "dependencies": {    
+    .....
+    .....
+    "escpos": "^3.0.0-alpha.6",
+    "escpos-usb": "^3.0.0-alpha.4",    
+    "usb": "^1.9.2"
+  },
+  .....
+  .....
+```
+
+#  Code implementation on `main.ts`
+- Print Text `printer.align('ct').text('By Deni Setiawan');`
+- Print Barcode (CODE39) `printer.align('ct').barcode('CODE39', 'CODE39'); `
+- Cut Papper `printer.cut();`
+- Open Cashdrawer `printer.cashdraw(2);`
+- Print QRCode `printer.align("ct").qrimage(qrUrl, function (err) { ...`
+
+```
+ipcMain.on('ipc-escpos', async () => {
+  console.log('IPC ESCPOS STARTING --------');
+  try {  
+   
+    const escpos = require('escpos');   // import lib escpos            
+    escpos.USB = require('escpos-usb'); // create usb adapter        
+    console.log(escpos.USB.findPrinter());   // for see list of printer        
+    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct printer        
+    const printer = new escpos.Printer(device); // initialize printer       
+      
+    let qrUrl = 'https://github.com/denitiawan'; // url
+   
+    // templating
+    device.open(() => {      
+        
+        // print text
+        printer.align('lt').text('');
+        printer.align('ct').text('Test Printing');
+        printer.align('ct').text('Electron React Boilerplate');
+        printer.align('lt').text('');
+
+        printer.align('ct').text('By Deni Setiawan');
+        printer.align('ct').text('NexSOFT');                
+        printer.align('lt').text('');
+
+        printer.align('ct').text('Feature Support : ');
+        printer.align('ct').text('Printout Text');
+        printer.align('ct').text('Printout Barcode (CODE39)');
+        printer.align('ct').text('Printout QR Code');
+        printer.align('ct').text('Cut Papper');
+        printer.align('ct').text('Open Cash Drawer');                
+        printer.align('lt').text('');       
+        
+        // print barcode
+        printer.align('ct').barcode('CODE39', 'CODE39'); 
+        printer.align('ct').text('');
+        
+        // print qrcode
+        printer.align('ct').text('Scan Me').style('B');
+        printer.align("ct").qrimage(qrUrl, function (err) { 
+          printer.align('ct').text(qrUrl);  
+          printer.align('ct').text('');
+          printer.align('ct').text('');
+          printer.cut(); 
+          printer.close(); 
+        });
+        
+        // print action
+        printer.cut(); 
+        printer.cashdraw(2); 
+        printer.close();     
+      });            
+     }
+     catch (error) {    
+      console.log(error);
+    }    
+});
+
+```
+
+#  Code implementation on renderClass
+- PrinterEscPosService.js
+```
+export const PrinterEscPosService = {
+  doPrint() {    
+    window.electron.ipcRenderer.sendMessage('ipc-escpos');    
+  },
+};
+```
+
+- PrinterComponent.tsx
+```
+import { PrinterEscPosService } from './PrinterEscPosService';
+
+export default function PrinterComponent() {
+  function doTestPrint() {    
+    PrinterEscPosService.doPrint();
+  }
+
+  return (
+    <div>
+      <button type="button" onClick={() => doTestPrint()}>
+        Test Printing
+      </button>
+      <br />      
+    </div>
+  );
+}
+
+```
+- App.tsx
+```
+import './App.css';
+import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
+import PrinterComponent from './printhermal/PrinterComponent';
+function Hello() {
+  return (
+    <div>      
+      <h1>Electron React Boilerplate</h1>
+      <h2>v4.6.0 (Latest)</h2>
+      <br/>      
+      <br/>      
+      <PrinterComponent />            
+      
+  </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Hello />} />
+      </Routes>
+    </Router>
+  );
+}
+
+```
+
+
+#  Result
+- Test Printing `Text` `Barcode` `QrCode` `Cut Papper`
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/366e1a2b-75ba-4367-9f10-ac891111f37f)
+
+- Automatic open cash drawer 
+- ![image](https://github.com/denitiawan/research-electron-react-boilerplate-printthermal/assets/11941308/3d80eb77-30ec-465a-a0ab-95be98bc20bf)
+
+
+
+# Notes
+### Solving problem  `usb.on` 
 ```
     /**
      * solving issue usb.on : 
@@ -23,46 +192,31 @@ npm i usb@1.9.2
      */
 ```
 
-##  Code implementation on `main.ts`
+### Solving problem `printer only work in first times`
 ```
-ipcMain.on('ipc-escpos', async () => {
-  console.log('IPC ESCPOS STARTING --------');
-  // --------------------
-  try {               
+if your printer is 'Thermal Printer' using 'printer.close();'
+if your printer is 'Dot Matrix Printer' using 'printer.flush();'
 
-    const escpos = require('escpos');   // import lib escpos    
-    escpos.USB = require('escpos-usb'); // create usb adapter    
-    let listPrinter = escpos.USB.findPrinter() // console log printer spesification
-    console.log(listPrinter);
-
-    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct Printer
-    const printer = new escpos.Printer(device); // printer
-    device.open(() => {
-        printer.align('lt').text('');
-        printer.align('lt').text('16-05-2023 15:13');        
-        printer.align('lt').text('Test Printing From React');
-        printer.align('lt').text('By Deni Setiawan');
-        printer.align('lt').text('NexSOFT');
-        printer.align('lt').text('');
-  
-        printer.cut(); // cutting papper function
-        printer.cashdraw(2); // open cashdrawer function
-        printer.close(); // close printer
-        printer.flush(); // flush printer
-  
-      });   
-
-     }
-     catch (error) {    
-      console.log(error);
-    }
-});
-
+----------------------------
+see the code implementation on below:
+- Thermal Printer:
+    .....
+    printer.cut(); 
+    printer.cashdraw(2);
+    printer.close();        
+        
+- Dot Matrix Printer:
+    .....
+    printer.cut(); 
+    printer.cashdraw(2);
+    printer.flush();                    
 ```
-
-### Console logs
+###  Example of codes for get idVendor & idProduct Printer for initialize  the printer
 ```
-IPC ESCPOS STARTING --------
+---- code --------
+console.log(escpos.USB.findPrinter());
+
+---- logs --------
 [
   Device {
     busNumber: 1,
@@ -99,17 +253,23 @@ IPC ESCPOS STARTING --------
   }
 ]
 ```
-### Success
-- success for import lib escpos
-- success for creating USB adapter
-- success for console.log list of printer (connected to windows OS)
-- success for register idVendor & idProduct printer to `escpos` librarry 
-- success for printout 
+### VSC TM-801 Printer barcode type support
+```
+After testing printout barcode on VSC TM-801(nexSOFT) Printer, this printer only support for barcodeType :
+- Support     : CODE39
+- Not Support : ITF, EAN8, UPC-E
+```
 
-### Issues
-- Issue printer cannot printout 2 times
+### QRCode example code
+impelement QrCode command, must end of code, because qrcode command, have implement .cut and .close
 ```
-i'am must unplug and pluged the printer, and then I hit again print function from react,  and printer can work again!
+....
+....
+printer.align("ct").qrimage('https://www.google.com', function (err) {                          
+  printer.cut(); 
+  printer.close();
+});
 ```
+
 
 
