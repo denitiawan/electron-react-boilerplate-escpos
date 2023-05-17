@@ -1,22 +1,16 @@
-import { PrinterEscPosSmallService } from './PrinterEscPosSmallService';
+import { PrinterEscPosService } from './PrinterEscPosService';
 
 export default function PrinterComponent() {
-  function printer_deni() {    
-    PrinterEscPosSmallService.doPrint();
-  }
-  function printer_nexSOFT() {    
+  function doTestPrint() {    
+    PrinterEscPosService.doPrint();
   }
 
   return (
     <div>
-      <button type="button" onClick={() => printer_deni()}>
-        Test Print - Deni
+      <button type="button" onClick={() => doTestPrint()}>
+        Test Printing
       </button>
-      <br />
-      <br />
-      <button type="button" onClick={() => printer_nexSOFT()}>
-        Test Print - nexSOFT
-      </button>
+      <br />      
     </div>
   );
 }

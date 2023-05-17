@@ -6,10 +6,13 @@ import PrinterComponent from './printhermal/PrinterComponent';
 
 function Hello() {
   return (
-    <div>
-    <div className="Hello">
-      <PrinterComponent />
-    </div>
+    <div>      
+      <h1>Electron React Boilerplate</h1>
+      <h2>v4.6.0 (Latest)</h2>
+      <br/>      
+      <br/>      
+      <PrinterComponent />            
+      
   </div>
   );
 }

@@ -7,8 +7,6 @@ import path from 'path';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
-
-
 /**
  * This module executes inside of electron's main process. You can start
  * electron renderer process from here and communicate with the other processes
@@ -28,37 +26,81 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
+
 ipcMain.on('ipc-escpos', async () => {
   console.log('IPC ESCPOS STARTING --------');
-  // --------------------
+
+
+  /**
+   * Issue Print only work the first time 
+   * https://github.com/song940/node-escpos/issues/416
+  **/
+
   try {               
+        
+    
+    const escpos = require('escpos');   // import lib escpos            
+    escpos.USB = require('escpos-usb'); // create usb adapter          
+    console.log(escpos.USB.findPrinter()); // for see list of printer
+              
+    
+    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct Printer    
+    const printer = new escpos.Printer(device); // initialize printer       
 
-    const escpos = require('escpos');   // import lib escpos    
-    escpos.USB = require('escpos-usb'); // create usb adapter    
-    let listPrinter = escpos.USB.findPrinter() // console log printer spesification
-    console.log(listPrinter);
-
-    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct Printer
-    const printer = new escpos.Printer(device); // printer
-    device.open(() => {
-        printer.align('lt').text('');
-        printer.align('lt').text('16-05-2023 15:13');        
-        printer.align('lt').text('Test Printing From React');
-        printer.align('lt').text('By Deni Setiawan');
-        printer.align('lt').text('NexSOFT');
-        printer.align('lt').text('');
+      
+    let qrUrl = 'https://github.com/denitiawan';
   
-        printer.cut(); // cutting papper function
-        printer.cashdraw(2); // open cashdrawer function
-        printer.close(); // close printer
-        printer.flush(); // flush printer
+        
+    // templating
+    device.open(() => {      
+        
+        // print text
+        printer.align('lt').text('');
+        printer.align('ct').text('Test Printing');
+        printer.align('ct').text('Electron React Boilerplate');
+        printer.align('lt').text('');
+
+        printer.align('ct').text('By Deni Setiawan');
+        printer.align('ct').text('NexSOFT');                
+        printer.align('lt').text('');
+
+        printer.align('ct').text('Feature Support : ');
+        printer.align('ct').text('Printout Text');
+        printer.align('ct').text('Printout Barcode (CODE39)');
+        printer.align('ct').text('Printout QR Code');
+        printer.align('ct').text('Cut Papper');
+        printer.align('ct').text('Open Cash Drawer');                
+        printer.align('lt').text('');        
+        
+        
+        // Print Barcode  
+        printer.align('ct').barcode('CODE39', 'CODE39'); 
+        printer.align('ct').text('');
+
+               
+        // Print QR Code
+        printer.align('ct').text('Scan Me').style('B');
+        printer.align("ct").qrimage(qrUrl, function (err) { 
+          printer.align('ct').text(qrUrl);  
+          printer.align('ct').text('17-mei-2023 13:12');
+          printer.align('ct').text('');
+          printer.align('ct').text('');
+        
+          // print action
+          printer.cut(); 
+          printer.cashdraw(2); 
+          printer.close(); 
+        });
+          
+        
+                
   
       });   
 
      }
      catch (error) {    
       console.log(error);
-    }
+    }    
 });
 
 ipcMain.on('ipc-example', async (event, arg) => {
