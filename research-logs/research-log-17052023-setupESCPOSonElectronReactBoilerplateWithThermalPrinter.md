@@ -187,7 +187,7 @@ export default function App() {
      */
 ```
 
-### Solving problem printer only work in first times
+### Solving problem `printer only work in first times`
 ```
 if your printer is 'Thermal Printer' using 'printer.close();'
 if your printer is 'Dot Matrix Printer' using 'printer.flush();'
