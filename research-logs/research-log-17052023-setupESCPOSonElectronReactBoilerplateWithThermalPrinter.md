@@ -173,6 +173,20 @@ export default function App() {
 
 
 # Notes
+### Solving problem  `usb.on` 
+```
+    /**
+     * solving issue usb.on : 
+     * - npm install usb@1.9.2
+     * - https://github.com/song940/node-escpos/issues/376
+     */
+
+    /**
+     * registration idVendor & idProduct printer
+     * - https://github.com/song940/node-escpos/blob/v3/packages/usb/README.md
+     */
+```
+
 ### Solving problem printer only work in first times
 ```
 if your printer is 'Thermal Printer' using 'printer.close();'
