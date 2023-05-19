@@ -1,5 +1,5 @@
 # What is this?
-This repository have example of code for setup and implementation [ESCPOS](https://github.com/song940/node-escpos) librarry on electron-react-boilerplate, for printing the receipt on Thermal Printer
+This repository have example of code for setup and implementation [ESCPOS](https://github.com/song940/node-escpos) librarry on [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) project, for printing the receipt on Thermal Printer
 
 # Overviews
 - Layout
