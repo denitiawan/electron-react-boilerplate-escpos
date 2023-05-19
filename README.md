@@ -1,5 +1,5 @@
-# What this repo?
-How to setup and implement ESCPOS lib on electron-react-boilerplate, for printing the receipt on Thermal Printer
+# What is this?
+This repository have example of code for setup and implement ESCPOS lib on electron-react-boilerplate, for printing the receipt on Thermal Printer
 
 # Overviews
 - Layout
