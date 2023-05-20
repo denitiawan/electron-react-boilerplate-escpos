@@ -17,26 +17,38 @@ Repository  : https://github.com/electron-react-boilerplate/electron-react-boile
 version     : v4.6.0 (Latest)
 ```
 
-### Librarries
+### Install escpo librarries
 ```
 npm i escpos@3.0.0-alpha.6
 npm i escpos-usb@3.0.0-alpha.4
 npm i usb@1.9.2
 ```
 
-### package.json
+### remove libs `escpos` `escpos-usb` `usb` on `root/package.json`
 ```
-  .....
-  .....
+ "dependencies": {
+    "electron-debug": "^3.2.0",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^5.3.0",    
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "react-thermal-printer": "^0.11.0",
+    
+    "escpos": "^3.0.0-alpha.6", // <-- remove
+    "escpos-usb": "^3.0.0-alpha.4", // <-- remove
+    "usb": "^1.9.2" // <-- remove
+     
+  },
+```
+
+### write libs `escpos` `escpos-usb` `usb` on `root/release/app/package.json`
+```
   "dependencies": {    
-    .....
-    .....
     "escpos": "^3.0.0-alpha.6",
     "escpos-usb": "^3.0.0-alpha.4",    
     "usb": "^1.9.2"
-  },
-  .....
-  .....
+  }  
 ```
 
 #  Code implementation on `main.ts`
@@ -56,7 +68,8 @@ ipcMain.on('ipc-escpos', async () => {
    
     const escpos = require('escpos');   // import lib escpos            
     escpos.USB = require('escpos-usb'); // create usb adapter        
-    console.log(escpos.USB.findPrinter());   // for see list of printer        
+    console.log(escpos.USB.findPrinter());   // for see printer spesification (idVendor & idProduct)
+    
     const device = new escpos.USB(4070, 33054); // register idVendor & idProduct printer        
     const printer = new escpos.Printer(device); // initialize printer       
       
