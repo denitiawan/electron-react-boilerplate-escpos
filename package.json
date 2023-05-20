@@ -97,14 +97,11 @@
   "dependencies": {
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
-    "electron-updater": "^5.3.0",
-    "escpos": "^3.0.0-alpha.6",
-    "escpos-usb": "^3.0.0-alpha.4",
+    "electron-updater": "^5.3.0",    
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
-    "react-thermal-printer": "^0.11.0",
-    "usb": "^1.9.2"
+    "react-thermal-printer": "^0.11.0"    
   },
   "devDependencies": {
     "@electron/notarize": "^1.2.3",
