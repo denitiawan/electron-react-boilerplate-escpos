@@ -69,11 +69,14 @@ ipcMain.on('ipc-escpos', async () => {
   try {  
    
     const escpos = require('escpos');   // import lib escpos            
-    escpos.USB = require('escpos-usb'); // create usb adapter        
-    console.log(escpos.USB.findPrinter());   // for see printer spesification (idVendor & idProduct)
+    escpos.USB = require('escpos-usb'); // create usb adapter                    
+    console.log(escpos.USB.findPrinter()); // for see printer spesification (idVendor & idProduct)
+                  
+    // register idVendor & idProduct Printer    
+    const device = new escpos.USB(4070, 33054); // Printer VSC TM 801
+    //const device = new escpos.USB(2501,22750); // Printer C58BT
     
-    const device = new escpos.USB(4070, 33054); // register idVendor & idProduct printer        
-    const printer = new escpos.Printer(device); // initialize printer       
+    const printer = new escpos.Printer(device); // initialize printer                   
       
     let qrUrl = 'https://github.com/denitiawan'; // url
    
