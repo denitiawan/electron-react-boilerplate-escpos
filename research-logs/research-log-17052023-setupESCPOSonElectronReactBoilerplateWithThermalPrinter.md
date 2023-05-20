@@ -17,14 +17,15 @@ Repository  : https://github.com/electron-react-boilerplate/electron-react-boile
 version     : v4.6.0 (Latest)
 ```
 
-### Install escpo librarries
+### Install librarries
 ```
 npm i escpos@3.0.0-alpha.6
 npm i escpos-usb@3.0.0-alpha.4
 npm i usb@1.9.2
 ```
 
-### remove libs `escpos` `escpos-usb` `usb` on `root/package.json`
+### Remove librarries
+Remove librarries `escpos` `escpos-usb` `usb` on `root/package.json`
 ```
  "dependencies": {
     "electron-debug": "^3.2.0",
@@ -42,7 +43,8 @@ npm i usb@1.9.2
   },
 ```
 
-### write libs `escpos` `escpos-usb` `usb` on `root/release/app/package.json`
+### Write librarries
+write librarries `escpos` `escpos-usb` `usb`  on `root/release/app/package.json`
 ```
   "dependencies": {    
     "escpos": "^3.0.0-alpha.6",
