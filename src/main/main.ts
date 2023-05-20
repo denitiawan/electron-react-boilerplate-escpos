@@ -38,8 +38,8 @@ ipcMain.on('ipc-escpos', async () => {
     console.log(escpos.USB.findPrinter()); // for see printer spesification (idVendor & idProduct)
                   
     // register idVendor & idProduct Printer    
-    //const device = new escpos.USB(4070, 33054); // Printer VSC TM 801
-    const device = new escpos.USB(2501,22750); // Printer C58BT
+    const device = new escpos.USB(4070, 33054); // Printer VSC TM 801
+    //const device = new escpos.USB(2501,22750); // Printer C58BT
     const printer = new escpos.Printer(device); // initialize printer       
     
       
