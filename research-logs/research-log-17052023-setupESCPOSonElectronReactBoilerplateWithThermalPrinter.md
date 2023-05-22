@@ -5,6 +5,16 @@
 |17-mei-2023|[Deni Setiawan](https://github.com/denitiawan)|
 # Setup EscPos on Electron React Boilerplate with Thermal Printer
 
+## Overviews 
+- [Requirement](#requirements)
+- [Install Librarries](#install-librarries)
+- [Remove librarries](#remove-librarries)
+- [Write librarries](#write-librarries)
+- [Code implementation on main.ts](#code-implementation-on-main)
+- [Code implementation on renderClass](#code-implementation-on-renderclass)
+- [Result](#result)
+- [Notes](#notes)
+
 
 ### Requirements
 ```
@@ -53,7 +63,7 @@ write librarries `escpos` `escpos-usb` `usb`  on `root/release/app/package.json`
   }  
 ```
 
-#  Code implementation on `main.ts`
+#  Code implementation on main
 ### Notes
 - Print Text `printer.align('ct').text('By Deni Setiawan');`
 - Print Barcode (CODE39) `printer.align('ct').barcode('CODE39', 'CODE39'); `
